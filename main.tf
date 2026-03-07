@@ -9,7 +9,7 @@ resource "aws_vpc" "roboshop" {
 }
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id #vpc association
+  vpc_id = aws_vpc.roboshop.id #vpc association
 
   tags = {
     Name = "main"
@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "main" {
 
 resource "aws_subnet" "public" { 
   count = length(var.public_sub_cidr)
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.public_sub_cidr[count.index]
   availability_zone = data.aws_availability_zones.available_zones.names[count.index]
   map_public_ip_on_launch = true
@@ -30,7 +30,7 @@ resource "aws_subnet" "public" {
 
 resource "aws_subnet" "private" {             
   count = length(var.private_sub_cidr)
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.private_sub_cidr[count.index]
   availability_zone = data.aws_availability_zones.available_zones.names[count.index]
 
@@ -41,7 +41,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_subnet" "database" {
   count = length(var.database_sub_cidr)
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.roboshop.id
   cidr_block = var.database_sub_cidr[count.index]
   availability_zone = data.aws_availability_zones.available_zones.names[count.index]
 
