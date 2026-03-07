@@ -9,19 +9,43 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.main.id #vpc association
 
   tags = {
     Name = "main"
   }
 }
 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "public" { 
+  count = length(var.public_sub_cidr)
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  cidr_block = var.public_sub_cidr[count.index]
+  availability_zone = data.aws_availability_zones.available_zones.names[count.index]
+  map_public_ip_on_launch = true
 
   tags = {
-    Name = "Main"
+    Name = "public"
+  }
+}
+
+resource "aws_subnet" "private" {             
+  count = length(var.private_sub_cidr)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.private_sub_cidr[count.index]
+  availability_zone = data.aws_availability_zones.available_zones.names[count.index]
+
+  tags = {
+    Name = "private"
+  }
+}
+
+resource "aws_subnet" "database" {
+  count = length(var.database_sub_cidr)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.database_sub_cidr[count.index]
+  availability_zone = data.aws_availability_zones.available_zones.names[count.index]
+
+  tags = {
+    Name = "database"
   }
 }
