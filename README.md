@@ -1,13 +1,14 @@
-**Terraform-vpc-Module**
+# Terraform-aws-vpc
 
-A reusable Terraform module to provision an AWS VPC with public, private, and database subnets, along with required networking components like Internet Gateway, NAT Gateway, and route tables.
+A reusable Terraform module to provision an AWS VPC with public, private, and database subnet tiers, along with core networking components such as Internet Gateway, NAT Gateway, and route tables.
 
-This module is designed to follow a practical structure used in real-world environments.
+This module follows a practical structure used in real-world environments and is designed to be simple, reusable, and easy to extend.
 
 ---
 
-**Usage**
+## Usage
 
+```hcl
 module "vpc" {
   source = "git::https://github.com/rajamohanreddy-vaka/terraform-aws-vpc.git?ref=main"
 
@@ -21,23 +22,20 @@ module "vpc" {
   database_subnet_cidrs = ["10.0.21.0/24", "10.0.22.0/24"]
 
   is_peering_required = false
-  #Enable if required
-  
 }
 
 ---
 
-**Features**
+# Features
+•	Creates a VPC with configurable CIDR block and DNS support
+•	Supports public, private, and database subnet tiers
+•	Internet Gateway for public subnet access
+•	NAT Gateway with Elastic IP for outbound access from private subnets
+•	Separate route tables for each subnet tier
+•	Optional VPC peering support
+•	Consistent tagging across all resources
 
-Creates a VPC with configurable CIDR and DNS support
-Supports public, private, and database subnet tiers
-Internet Gateway for public access
-NAT Gateway for outbound access from private subnets
-Separate route tables for each subnet type
-Optional VPC peering support
-Consistent tagging across all resources
 
----
 
 **Resources Created**
 
@@ -94,3 +92,4 @@ Example:
 roboshop-dev-public-us-east-1a
 roboshop-dev-private-us-east-1b
 roboshop-dev-database-us-east-1a
+
