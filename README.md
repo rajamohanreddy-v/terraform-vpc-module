@@ -1,4 +1,4 @@
-**Terraform VPC Module**
+**Terraform-vpc-Module**
 
 A reusable Terraform module to provision an AWS VPC with public, private, and database subnets, along with required networking components like Internet Gateway, NAT Gateway, and route tables.
 
@@ -21,4 +21,57 @@ module "vpc" {
   database_subnet_cidrs = ["10.0.21.0/24", "10.0.22.0/24"]
 
   is_peering_required = false
+  #Enable if required
+  
 }
+
+---
+
+**Features**
+
+Creates a VPC with configurable CIDR and DNS support
+Supports public, private, and database subnet tiers
+Internet Gateway for public access
+NAT Gateway for outbound access from private subnets
+Separate route tables for each subnet type
+Optional VPC peering support
+Consistent tagging across all resources
+
+---
+
+**Resources Created**
+
+VPC
+Internet Gateway
+Public, Private, and Database Subnets
+NAT Gateway with Elastic IP
+Route Tables and Route Table Associations
+
+**Inputs**
+
+Name	Description	Type	Required
+project	Project name for resource naming	string	yes
+environment	Environment (dev/qa/uat/prod)	string	yes
+vpc_cidr	CIDR block for VPC	string	no
+public_subnet_cidrs	Public subnet CIDRs	list(string)	no
+private_subnet_cidrs	Private subnet CIDRs	list(string)	no
+database_subnet_cidrs	Database subnet CIDRs	list(string)	no
+is_peering_required	Enable VPC peering	bool	no
+
+**Outputs**
+Name	Description
+vpc_id	VPC ID
+public_subnet_ids	Public subnet IDs
+private_subnet_ids	Private subnet IDs
+database_subnet_ids	Database subnet IDs
+🏷️ Naming Convention
+
+Resources follow this format:
+
+{project}-{environment}-{tier}-{az}
+
+Example:
+
+roboshop-dev-public-us-east-1a
+roboshop-dev-private-us-east-1b
+roboshop-dev-database-us-east-1a
