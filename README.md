@@ -1,4 +1,4 @@
-# Terraform-aws-vpc
+# Terraform-vpc-Module
 
 A reusable Terraform module to provision an AWS VPC with public, private, and database subnet tiers, along with core networking components such as Internet Gateway, NAT Gateway, and route tables.
 
