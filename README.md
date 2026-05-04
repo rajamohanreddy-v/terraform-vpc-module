@@ -26,7 +26,8 @@ module "vpc" {
 
 ---
 
-# Features
+ Features
+
 •	Creates a VPC with configurable CIDR block and DNS support
 •	Supports public, private, and database subnet tiers
 •	Internet Gateway for public subnet access
@@ -35,9 +36,10 @@ module "vpc" {
 •	Optional VPC peering support
 •	Consistent tagging across all resources
 
+---
 
 
-**Resources Created**
+Resources Created
 
 | Name | Type |
 |------|------|
@@ -58,7 +60,9 @@ module "vpc" {
 | aws_route_table_association.private | resource |
 | aws_route_table_association.database | resource |
 
-**Inputs**
+---
+
+Inputs
 
 | Name | Description | Type | Required |
 |------|------------|------|----------|
@@ -70,8 +74,9 @@ module "vpc" {
 | database_subnet_cidrs | Database subnet CIDRs | `list(string)` | no |
 | is_peering_required | Enable VPC peering | `bool` | no |
 
+---
 
-**Outputs**
+Outputs
 
 | Name | Description |
 |------|------------|
@@ -80,8 +85,9 @@ module "vpc" {
 | private_subnet_ids | Private subnet IDs |
 | database_subnet_ids | Database subnet IDs |
 
+---
 
-**Naming Convention**
+Naming Convention
 
 Resources follow this format:
 
@@ -93,3 +99,4 @@ roboshop-dev-public-us-east-1a
 roboshop-dev-private-us-east-1b
 roboshop-dev-database-us-east-1a
 
+---
