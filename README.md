@@ -103,11 +103,13 @@ Resources follow this format:
 
 Example:
 
-roboshop-dev-public-us-east-1a
-roboshop-dev-private-us-east-1b
-roboshop-dev-database-us-east-1a
+- roboshop-dev-public-us-east-1a
+- roboshop-dev-private-us-east-1b
+- roboshop-dev-database-us-east-1a
 
 ---
 ```
+```
+![VPC_Module](./images/vpc_module..png)
 
-![VPC_Module](./images/vpc_module.png)
+```
