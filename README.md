@@ -41,30 +41,49 @@ Consistent tagging across all resources
 
 **Resources Created**
 
-VPC
-Internet Gateway
-Public, Private, and Database Subnets
-NAT Gateway with Elastic IP
-Route Tables and Route Table Associations
+| Name | Type |
+|------|------|
+| aws_vpc.main | resource |
+| aws_internet_gateway.main | resource |
+| aws_subnet.public | resource |
+| aws_subnet.private | resource |
+| aws_subnet.database | resource |
+| aws_eip.nat | resource |
+| aws_nat_gateway.main | resource |
+| aws_route_table.public | resource |
+| aws_route_table.private | resource |
+| aws_route_table.database | resource |
+| aws_route.public | resource |
+| aws_route.private | resource |
+| aws_route.database | resource |
+| aws_route_table_association.public | resource |
+| aws_route_table_association.private | resource |
+| aws_route_table_association.database | resource |
 
 **Inputs**
 
-Name	Description	Type	Required
-project	Project name for resource naming	string	yes
-environment	Environment (dev/qa/uat/prod)	string	yes
-vpc_cidr	CIDR block for VPC	string	no
-public_subnet_cidrs	Public subnet CIDRs	list(string)	no
-private_subnet_cidrs	Private subnet CIDRs	list(string)	no
-database_subnet_cidrs	Database subnet CIDRs	list(string)	no
-is_peering_required	Enable VPC peering	bool	no
+| Name | Description | Type | Required |
+|------|------------|------|----------|
+| project | Project name for resource naming | `string` | yes |
+| environment | Environment (dev/qa/uat/prod) | `string` | yes |
+| vpc_cidr | CIDR block for VPC | `string` | no |
+| public_subnet_cidrs | Public subnet CIDRs | `list(string)` | no |
+| private_subnet_cidrs | Private subnet CIDRs | `list(string)` | no |
+| database_subnet_cidrs | Database subnet CIDRs | `list(string)` | no |
+| is_peering_required | Enable VPC peering | `bool` | no |
+
 
 **Outputs**
-Name	Description
-vpc_id	VPC ID
-public_subnet_ids	Public subnet IDs
-private_subnet_ids	Private subnet IDs
-database_subnet_ids	Database subnet IDs
-🏷️ Naming Convention
+
+| Name | Description |
+|------|------------|
+| vpc_id | VPC ID |
+| public_subnet_ids | Public subnet IDs |
+| private_subnet_ids | Private subnet IDs |
+| database_subnet_ids | Database subnet IDs |
+
+
+**Naming Convention**
 
 Resources follow this format:
 
