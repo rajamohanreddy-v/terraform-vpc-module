@@ -35,7 +35,8 @@ module "vpc" {
   vpc_cidr         = "10.0.0.0/16"
 
   public_subnets   = ["10.0.1.0/24", "10.0.2.0/24"]
-  private_subnets  = ["10.0.3.0/24", "10.0.4.0/24"]
+  private_subnets  = ["10.0.10.0/24", "10.0.11.0/24"]
+  database_subnets = ["10.0.20.0/24", "10.0.21.0/24"]
 
   availability_zones = ["us-east-1a", "us-east-1b"]
 
@@ -49,9 +50,10 @@ Variable Name	Description	Example
 project_name	Name of your project	"my-project"
 environment	Environment (dev/stage/prod)	"dev"
 vpc_cidr	CIDR block for the VPC	"10.0.0.0/16"
-public_subnets	List of public subnet CIDRs	["10.0.1.0/24"]
-private_subnets	List of private subnet CIDRs	["10.0.2.0/24"]
-availability_zones	AZs for subnets	["ap-south-1a"]
+public_subnets	List of public subnet CIDRs	["10.0.1.0/24, 10.0.2.0/24"]
+private_subnets  List of private_subnet CIDRs ["10.0.10.0/24", "10.0.11.0/24"]
+database_subnets List of database_subnet CIDRs ["10.0.20.0/24", "10.0.21.0/24"]
+availability_zones	AZs for subnets	["us-east-1a"]
 enable_nat_gateway	Whether to create NAT Gateway	true/false
 
 📤 Outputs
